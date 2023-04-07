@@ -1026,3 +1026,17 @@ script LittleRootTown_EventScript_NewSign {
     msgbox("Hello World!")
     releaseall
 }
+
+script LittleRootTown_EventScript_Lies {
+	lockall
+	msgbox("One of us lies.")
+	waitmessage
+	releaseall
+}
+
+script LittleRootTown_EventScript_Truth {
+	lockall
+	msgbox("One of us tells the truth.")
+	waitmessage
+	releaseall
+}

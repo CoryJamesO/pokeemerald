@@ -43,11 +43,11 @@
 
 // Custom Flags, 0x20 - 0x4F
 
-#define FLAG_NEWBIRCHLAB_HIDE_WURMPLE_BALL      0x20 
-#define FLAG_UNUSED_0x021                       0x21
-#define FLAG_UNUSED_0x022                       0x22
-#define FLAG_NEWBIRCHLAB_RECEIVED_POKEMON       0x23
+#define FLAG_NEWBIRCHLAB_PICKED_BALL_ONE      0x20 
+#define FLAG_NEWBIRCHLAB_PICKED_BALL_TWO      0x21
+#define FLAG_NEWBIRCHLAB_PICKED_BALL_THREE    0x22
 
+#define FLAG_UNUSED_0x023                       0x23 // Unused Flag
 #define FLAG_UNUSED_0x024                       0x24 // Unused Flag
 #define FLAG_UNUSED_0x025                       0x25 // Unused Flag
 #define FLAG_UNUSED_0x026                       0x26 // Unused Flag
