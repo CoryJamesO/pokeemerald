@@ -52,7 +52,10 @@ script NewBirchLab_EventScript_PokeballOne{
         }
     }
     else{
-        call(NewBirchLab_ShareTheLoad)
+        applymovement(4, BirchLookLeft)
+        msgbox(format("Hey, don't take more than your share, you little rat!"))
+        waitmessage
+        applymovement(4, BirchLookDown)
     }
     waitmessage
     releaseall
@@ -74,7 +77,10 @@ script NewBirchLab_EventScript_PokeballTwo{
         }
     }
     else{
-        msgbox(NewBirchLab_ShareTheLoad)
+        applymovement(4, BirchLookLeft)
+        msgbox(format("Hey, don't take more than your share, you little rat!"))
+        waitmessage
+        applymovement(4, BirchLookDown)
     }
     waitmessage
     releaseall
@@ -96,7 +102,10 @@ script NewBirchLab_EventScript_PokeballThree{
         }
     }
     else{
-        msgbox(NewBirchLab_ShareTheLoad)
+        applymovement(4, BirchLookLeft)
+        msgbox(format("Hey, don't take more than your share, you little rat!"))
+        waitmessage
+        applymovement(4, BirchLookDown)
     }
     waitmessage
     releaseall
@@ -530,28 +539,15 @@ script NicknameBoxMon {
 }
 
 
-script NewBirchLab_ShareTheLoad {
-    applymovement(4, BirchLookLeft)
-    msgbox(NewBirchLab_ShareTheLoadText)
-    waitmessage
-    applymovement(4, BirchLookDown)
-    releaseall
-}
-
 text NewBirchLab_BallNotChosen {
     "You did not choose the Pokemon."
 }
 
-raw `
 
-BirchLookLeft:
-    face_left
-
-BirchLookDown:
+movement BirchLookDown {
     face_down
+}
 
-NewBirchLab_ShareTheLoadText:
-    .string "Hey! Don't take more than your share,\l"
-    .string "you little rat."
-
-`
+movement BirchLookLeft {
+    face_left
+}

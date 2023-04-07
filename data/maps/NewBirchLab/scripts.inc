@@ -51,7 +51,10 @@ NewBirchLab_EventScript_PokeballOne::
 	lockall
 	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballOne_4
 NewBirchLab_EventScript_PokeballOne_3:
-	call NewBirchLab_ShareTheLoad
+	applymovement 4, BirchLookLeft
+	msgbox NewBirchLab_EventScript_PokeballOne_Text_0
+	waitmessage
+	applymovement 4, BirchLookDown
 NewBirchLab_EventScript_PokeballOne_1:
 	waitmessage
 	releaseall
@@ -91,7 +94,10 @@ NewBirchLab_EventScript_PokeballTwo::
 	lockall
 	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballTwo_4
 NewBirchLab_EventScript_PokeballTwo_3:
-	msgbox NewBirchLab_ShareTheLoad
+	applymovement 4, BirchLookLeft
+	msgbox NewBirchLab_EventScript_PokeballOne_Text_0
+	waitmessage
+	applymovement 4, BirchLookDown
 NewBirchLab_EventScript_PokeballTwo_1:
 	waitmessage
 	releaseall
@@ -131,7 +137,10 @@ NewBirchLab_EventScript_PokeballThree::
 	lockall
 	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballThree_4
 NewBirchLab_EventScript_PokeballThree_3:
-	msgbox NewBirchLab_ShareTheLoad
+	applymovement 4, BirchLookLeft
+	msgbox NewBirchLab_EventScript_PokeballOne_Text_0
+	waitmessage
+	applymovement 4, BirchLookDown
 NewBirchLab_EventScript_PokeballThree_1:
 	waitmessage
 	releaseall
@@ -581,24 +590,13 @@ NicknameBoxMon_2:
 	goto NicknameBoxMon_1
 
 
-NewBirchLab_ShareTheLoad::
-	applymovement 4, BirchLookLeft
-	msgbox NewBirchLab_ShareTheLoadText
-	waitmessage
-	applymovement 4, BirchLookDown
-	releaseall
-	return
-
+BirchLookDown:
+	face_down
+	step_end
 
 BirchLookLeft:
-    face_left
-
-BirchLookDown:
-    face_down
-
-NewBirchLab_ShareTheLoadText:
-    .string "Hey! Don't take more than your share,\n"
-    .string "you little rat."
+	face_left
+	step_end
 
 NewBirchLab_EventScript_Birch_Text_0:
 	.string "Wanna see some others?$"
@@ -608,6 +606,10 @@ NewBirchLab_EventScript_Birch_Text_1:
 
 NewBirchLab_EventScript_Birch_Text_2:
 	.string "Have a good time then.$"
+
+NewBirchLab_EventScript_PokeballOne_Text_0:
+	.string "Hey, don't take more than your share,\n"
+	.string "you little rat!$"
 
 NewBirchLab_EventScript_Wurmple_Text_0:
 	.string "Do you want to choose Wurmple?$"
