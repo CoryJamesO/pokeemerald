@@ -1026,5 +1026,27 @@ LittleRootTown_EventScript_NewSign::
 	return
 
 
+LittleRootTown_EventScript_Lies::
+	lockall
+	msgbox LittleRootTown_EventScript_Lies_Text_0
+	waitmessage
+	releaseall
+	return
+
+
+LittleRootTown_EventScript_Truth::
+	lockall
+	msgbox LittleRootTown_EventScript_Truth_Text_0
+	waitmessage
+	releaseall
+	return
+
+
 LittleRootTown_EventScript_NewSign_Text_0:
 	.string "Hello World!$"
+
+LittleRootTown_EventScript_Lies_Text_0:
+	.string "One of us lies.$"
+
+LittleRootTown_EventScript_Truth_Text_0:
+	.string "One of us tells the truth.$"

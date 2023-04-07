@@ -8,7 +8,7 @@ script NewBirchLab_EventScript_BallDefault {
 
 script NewBirchLab_EventScript_Birch {
     
-    lockall
+    lock
     faceplayer
     if(!(flag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE))) {
         
@@ -33,7 +33,7 @@ script NewBirchLab_EventScript_Birch {
         msgbox("Have a good time then.")
     }
     waitmessage
-    releaseall
+    release
     end
 }
 
@@ -535,22 +535,23 @@ script NewBirchLab_ShareTheLoad {
     msgbox(NewBirchLab_ShareTheLoadText)
     waitmessage
     applymovement(4, BirchLookDown)
-}
-
-movement BirchLookLeft {
-    face_left
-}
-
-movement BirchLookDown {
-    face_down
+    releaseall
 }
 
 text NewBirchLab_BallNotChosen {
     "You did not choose the Pokemon."
 }
 
+raw `
 
-text NewBirchLab_ShareTheLoadText {
-    "Hey! Don't take more than your share,\l."
-    "you little rat."
-}
+BirchLookLeft:
+    face_left
+
+BirchLookDown:
+    face_down
+
+NewBirchLab_ShareTheLoadText:
+    .string "Hey! Don't take more than your share,\l"
+    .string "you little rat."
+
+`
