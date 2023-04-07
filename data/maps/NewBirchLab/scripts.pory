@@ -1,0 +1,72 @@
+mapscripts NewBirchLab_MapScripts {}
+
+script NewBirchLab_EventScript_PokeballWurmple{
+
+    lockall
+
+    showmonpic(SPECIES_WURMPLE, 10, 3)
+    msgbox("Do you want to choose Wurmple?", MSGBOX_YESNO)
+
+    if(var(VAR_RESULT) == YES) {
+        givemon(SPECIES_WURMPLE, 5, ITEM_NUGGET)
+
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Received Wurmple!")
+            removeobject(1)
+            setflag(FLAG_NEWBIRCHLAB_HIDE_WURMPLE_BALL)
+            setflag(FLAG_NEWBIRCHLAB_RECEIVED_POKEMON)
+            call(NicknamePartyMon)
+        }
+        
+        elif (var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Received Wurmple!")
+            removeobject(1)
+            setflag(FLAG_NEWBIRCHLAB_HIDE_WURMPLE_BALL)
+            setflag(FLAG_NEWBIRCHLAB_RECEIVED_POKEMON)
+            call(NicknameBoxMon)
+        }
+
+        else { // MON CAN'T BE GIVEN
+            hidemonpic
+            msgbox("No more room!")
+        }
+    }
+
+    else { // IF NO
+        hidemonpic
+        msgbox(NewBirchLab_NotChosen)
+    }
+
+    waitmessage
+    releaseall
+    end
+
+}
+
+script NicknamePartyMon {
+
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES) {
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+}
+
+
+script NicknameBoxMon {
+
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES) {
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    msgbox("Transferred to PC!")
+}
+
+
+text NewBirchLab_NotChosen {
+    "You did not choose the Wurmple."
+}
