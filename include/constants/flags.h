@@ -43,9 +43,9 @@
 
 // Custom Flags, 0x20 - 0x4F
 
-#define FLAG_NEWBIRCHLAB_PICKED_BALL_ONE      0x20 
-#define FLAG_NEWBIRCHLAB_PICKED_BALL_TWO      0x21
-#define FLAG_NEWBIRCHLAB_PICKED_BALL_THREE    0x22
+#define FLAG_PICKED_BALL_ONE      0x20 
+#define FLAG_PICKED_BALL_TWO      0x21
+#define FLAG_PICKED_BALL_THREE    0x22
 
 #define FLAG_UNUSED_0x023                       0x23 // Unused Flag
 #define FLAG_UNUSED_0x024                       0x24 // Unused Flag

@@ -4,14 +4,14 @@ NewBirchLab_MapScripts::
 
 
 NewBirchLab_EventScript_BallDefault::
-	setvar VAR_NEWBIRCHLAB_SET_SELECTION, 0
+	setvar VAR_STARTER_REGION, 0
 	return
 
 
 NewBirchLab_EventScript_Birch::
 	lock
 	faceplayer
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_Birch_4
+	goto_if_unset FLAG_PICKED_BALL_ONE, NewBirchLab_EventScript_Birch_4
 NewBirchLab_EventScript_Birch_3:
 	msgbox NewBirchLab_EventScript_Birch_Text_2
 NewBirchLab_EventScript_Birch_1:
@@ -20,36 +20,53 @@ NewBirchLab_EventScript_Birch_1:
 	end
 
 NewBirchLab_EventScript_Birch_2:
-	msgbox NewBirchLab_EventScript_Birch_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq NewBirchLab_EventScript_Birch_9
+	message NewBirchLab_EventScript_Birch_Text_0
+	multichoice 25, 5, MULTI_STARTER_CHOICE, 0
+	closemessage
+	compare VAR_RESULT, 0
+	goto_if_eq NewBirchLab_EventScript_Birch_10
+	compare VAR_RESULT, 1
+	goto_if_eq NewBirchLab_EventScript_Birch_11
+	compare VAR_RESULT, 2
+	goto_if_eq NewBirchLab_EventScript_Birch_12
+NewBirchLab_EventScript_Birch_9:
 	msgbox NewBirchLab_EventScript_Birch_Text_1
 	goto NewBirchLab_EventScript_Birch_1
 
 NewBirchLab_EventScript_Birch_4:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_TWO, NewBirchLab_EventScript_Birch_6
+	goto_if_unset FLAG_PICKED_BALL_TWO, NewBirchLab_EventScript_Birch_6
 	goto NewBirchLab_EventScript_Birch_3
 
 NewBirchLab_EventScript_Birch_6:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_THREE, NewBirchLab_EventScript_Birch_2
+	goto_if_unset FLAG_PICKED_BALL_THREE, NewBirchLab_EventScript_Birch_2
 	goto NewBirchLab_EventScript_Birch_3
 
-NewBirchLab_EventScript_Birch_9:
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 2
-	goto_if_ne NewBirchLab_EventScript_Birch_13
-	setvar VAR_NEWBIRCHLAB_SET_SELECTION, 0
-NewBirchLab_EventScript_Birch_12:
-	msgbox NewBirchLab_EventScript_Birch_Text_1
-	goto NewBirchLab_EventScript_Birch_1
+NewBirchLab_EventScript_Birch_10:
+	call StarterFade
+	setvar VAR_STARTER_REGION, 2
+	goto NewBirchLab_EventScript_Birch_9
 
-NewBirchLab_EventScript_Birch_13:
-	addvar VAR_NEWBIRCHLAB_SET_SELECTION, 1
-	goto NewBirchLab_EventScript_Birch_12
+NewBirchLab_EventScript_Birch_11:
+	call StarterFade
+	setvar VAR_STARTER_REGION, 1
+	goto NewBirchLab_EventScript_Birch_9
+
+NewBirchLab_EventScript_Birch_12:
+	call StarterFade
+	setvar VAR_STARTER_REGION, 0
+	goto NewBirchLab_EventScript_Birch_9
+
+
+StarterFade::
+	fadescreen FADE_TO_BLACK
+	delay 20
+	fadescreen FADE_FROM_BLACK
+	return
 
 
 NewBirchLab_EventScript_PokeballOne::
 	lockall
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballOne_4
+	goto_if_unset FLAG_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballOne_4
 NewBirchLab_EventScript_PokeballOne_3:
 	applymovement 4, BirchLookLeft
 	msgbox NewBirchLab_EventScript_PokeballOne_Text_0
@@ -61,20 +78,20 @@ NewBirchLab_EventScript_PokeballOne_1:
 	end
 
 NewBirchLab_EventScript_PokeballOne_2:
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 0
+	compare VAR_STARTER_REGION, 0
 	goto_if_eq NewBirchLab_EventScript_PokeballOne_9
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 1
+	compare VAR_STARTER_REGION, 1
 	goto_if_eq NewBirchLab_EventScript_PokeballOne_10
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 2
+	compare VAR_STARTER_REGION, 2
 	goto_if_eq NewBirchLab_EventScript_PokeballOne_11
 	goto NewBirchLab_EventScript_PokeballOne_1
 
 NewBirchLab_EventScript_PokeballOne_4:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_TWO, NewBirchLab_EventScript_PokeballOne_6
+	goto_if_unset FLAG_PICKED_BALL_TWO, NewBirchLab_EventScript_PokeballOne_6
 	goto NewBirchLab_EventScript_PokeballOne_3
 
 NewBirchLab_EventScript_PokeballOne_6:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_THREE, NewBirchLab_EventScript_PokeballOne_2
+	goto_if_unset FLAG_PICKED_BALL_THREE, NewBirchLab_EventScript_PokeballOne_2
 	goto NewBirchLab_EventScript_PokeballOne_3
 
 NewBirchLab_EventScript_PokeballOne_9:
@@ -92,7 +109,7 @@ NewBirchLab_EventScript_PokeballOne_11:
 
 NewBirchLab_EventScript_PokeballTwo::
 	lockall
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballTwo_4
+	goto_if_unset FLAG_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballTwo_4
 NewBirchLab_EventScript_PokeballTwo_3:
 	applymovement 4, BirchLookLeft
 	msgbox NewBirchLab_EventScript_PokeballOne_Text_0
@@ -104,20 +121,20 @@ NewBirchLab_EventScript_PokeballTwo_1:
 	end
 
 NewBirchLab_EventScript_PokeballTwo_2:
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 0
+	compare VAR_STARTER_REGION, 0
 	goto_if_eq NewBirchLab_EventScript_PokeballTwo_9
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 1
+	compare VAR_STARTER_REGION, 1
 	goto_if_eq NewBirchLab_EventScript_PokeballTwo_10
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 2
+	compare VAR_STARTER_REGION, 2
 	goto_if_eq NewBirchLab_EventScript_PokeballTwo_11
 	goto NewBirchLab_EventScript_PokeballTwo_1
 
 NewBirchLab_EventScript_PokeballTwo_4:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_TWO, NewBirchLab_EventScript_PokeballTwo_6
+	goto_if_unset FLAG_PICKED_BALL_TWO, NewBirchLab_EventScript_PokeballTwo_6
 	goto NewBirchLab_EventScript_PokeballTwo_3
 
 NewBirchLab_EventScript_PokeballTwo_6:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_THREE, NewBirchLab_EventScript_PokeballTwo_2
+	goto_if_unset FLAG_PICKED_BALL_THREE, NewBirchLab_EventScript_PokeballTwo_2
 	goto NewBirchLab_EventScript_PokeballTwo_3
 
 NewBirchLab_EventScript_PokeballTwo_9:
@@ -135,7 +152,7 @@ NewBirchLab_EventScript_PokeballTwo_11:
 
 NewBirchLab_EventScript_PokeballThree::
 	lockall
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballThree_4
+	goto_if_unset FLAG_PICKED_BALL_ONE, NewBirchLab_EventScript_PokeballThree_4
 NewBirchLab_EventScript_PokeballThree_3:
 	applymovement 4, BirchLookLeft
 	msgbox NewBirchLab_EventScript_PokeballOne_Text_0
@@ -147,20 +164,20 @@ NewBirchLab_EventScript_PokeballThree_1:
 	end
 
 NewBirchLab_EventScript_PokeballThree_2:
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 0
+	compare VAR_STARTER_REGION, 0
 	goto_if_eq NewBirchLab_EventScript_PokeballThree_9
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 1
+	compare VAR_STARTER_REGION, 1
 	goto_if_eq NewBirchLab_EventScript_PokeballThree_10
-	compare VAR_NEWBIRCHLAB_SET_SELECTION, 2
+	compare VAR_STARTER_REGION, 2
 	goto_if_eq NewBirchLab_EventScript_PokeballThree_11
 	goto NewBirchLab_EventScript_PokeballThree_1
 
 NewBirchLab_EventScript_PokeballThree_4:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_TWO, NewBirchLab_EventScript_PokeballThree_6
+	goto_if_unset FLAG_PICKED_BALL_TWO, NewBirchLab_EventScript_PokeballThree_6
 	goto NewBirchLab_EventScript_PokeballThree_3
 
 NewBirchLab_EventScript_PokeballThree_6:
-	goto_if_unset FLAG_NEWBIRCHLAB_PICKED_BALL_THREE, NewBirchLab_EventScript_PokeballThree_2
+	goto_if_unset FLAG_PICKED_BALL_THREE, NewBirchLab_EventScript_PokeballThree_2
 	goto NewBirchLab_EventScript_PokeballThree_3
 
 NewBirchLab_EventScript_PokeballThree_9:
@@ -202,7 +219,7 @@ NewBirchLab_EventScript_Wurmple_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Wurmple_Text_1
 	removeobject 1
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_ONE
+	setflag FLAG_PICKED_BALL_ONE
 	setvar VAR_STARTER_MON, 0
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -212,7 +229,7 @@ NewBirchLab_EventScript_Wurmple_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Wurmple_Text_1
 	removeobject 1
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_ONE
+	setflag FLAG_PICKED_BALL_ONE
 	setvar VAR_STARTER_MON, 0
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -245,7 +262,7 @@ NewBirchLab_EventScript_Spinarak_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Spinarak_Text_1
 	removeobject 1
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_ONE
+	setflag FLAG_PICKED_BALL_ONE
 	setvar VAR_STARTER_MON, 0
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -255,7 +272,7 @@ NewBirchLab_EventScript_Spinarak_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Spinarak_Text_1
 	removeobject 1
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_ONE
+	setflag FLAG_PICKED_BALL_ONE
 	setvar VAR_STARTER_MON, 0
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -288,7 +305,7 @@ NewBirchLab_EventScript_Rattata_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Rattata_Text_1
 	removeobject 1
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_ONE
+	setflag FLAG_PICKED_BALL_ONE
 	setvar VAR_STARTER_MON, 0
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -298,7 +315,7 @@ NewBirchLab_EventScript_Rattata_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Rattata_Text_1
 	removeobject 1
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_ONE
+	setflag FLAG_PICKED_BALL_ONE
 	setvar VAR_STARTER_MON, 0
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -331,7 +348,7 @@ NewBirchLab_EventScript_Lotad_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Lotad_Text_1
 	removeobject 2
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_TWO
+	setflag FLAG_PICKED_BALL_TWO
 	setvar VAR_STARTER_MON, 1
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -341,7 +358,7 @@ NewBirchLab_EventScript_Lotad_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Lotad_Text_1
 	removeobject 2
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_TWO
+	setflag FLAG_PICKED_BALL_TWO
 	setvar VAR_STARTER_MON, 1
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -374,7 +391,7 @@ NewBirchLab_EventScript_Hoothoot_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Hoothoot_Text_1
 	removeobject 2
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_TWO
+	setflag FLAG_PICKED_BALL_TWO
 	setvar VAR_STARTER_MON, 1
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -384,7 +401,7 @@ NewBirchLab_EventScript_Hoothoot_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Hoothoot_Text_1
 	removeobject 2
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_TWO
+	setflag FLAG_PICKED_BALL_TWO
 	setvar VAR_STARTER_MON, 1
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -417,7 +434,7 @@ NewBirchLab_EventScript_Caterpie_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Caterpie_Text_1
 	removeobject 2
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_TWO
+	setflag FLAG_PICKED_BALL_TWO
 	setvar VAR_STARTER_MON, 1
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -427,7 +444,7 @@ NewBirchLab_EventScript_Caterpie_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Caterpie_Text_1
 	removeobject 2
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_TWO
+	setflag FLAG_PICKED_BALL_TWO
 	setvar VAR_STARTER_MON, 1
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -460,7 +477,7 @@ NewBirchLab_EventScript_Seedot_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Seedot_Text_1
 	removeobject 3
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_THREE
+	setflag FLAG_PICKED_BALL_THREE
 	setvar VAR_STARTER_MON, 2
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -470,7 +487,7 @@ NewBirchLab_EventScript_Seedot_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Seedot_Text_1
 	removeobject 3
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_THREE
+	setflag FLAG_PICKED_BALL_THREE
 	setvar VAR_STARTER_MON, 2
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -503,7 +520,7 @@ NewBirchLab_EventScript_Natu_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Natu_Text_1
 	removeobject 3
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_THREE
+	setflag FLAG_PICKED_BALL_THREE
 	setvar VAR_STARTER_MON, 2
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -513,7 +530,7 @@ NewBirchLab_EventScript_Natu_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Natu_Text_1
 	removeobject 3
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_THREE
+	setflag FLAG_PICKED_BALL_THREE
 	setvar VAR_STARTER_MON, 2
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -546,7 +563,7 @@ NewBirchLab_EventScript_Magikarp_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Magikarp_Text_1
 	removeobject 3
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_THREE
+	setflag FLAG_PICKED_BALL_THREE
 	setvar VAR_STARTER_MON, 2
 	call NicknamePartyMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -556,7 +573,7 @@ NewBirchLab_EventScript_Magikarp_6:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox NewBirchLab_EventScript_Magikarp_Text_1
 	removeobject 3
-	setflag FLAG_NEWBIRCHLAB_PICKED_BALL_THREE
+	setflag FLAG_PICKED_BALL_THREE
 	setvar VAR_STARTER_MON, 2
 	call NicknameBoxMon
 	setflag FLAG_SYS_POKEMON_GET
@@ -599,7 +616,7 @@ BirchLookLeft:
 	step_end
 
 NewBirchLab_EventScript_Birch_Text_0:
-	.string "Wanna see some others?$"
+	.string "Wanna see some more?$"
 
 NewBirchLab_EventScript_Birch_Text_1:
 	.string "Just pick something and go.$"

@@ -3,32 +3,32 @@ mapscripts NewBirchLab_MapScripts {
 }
 
 script NewBirchLab_EventScript_BallDefault {
-    setvar(VAR_NEWBIRCHLAB_SET_SELECTION, 0)
+    setvar(VAR_STARTER_REGION, 0)
 }
 
 script NewBirchLab_EventScript_Birch {
     
     lock
     faceplayer
-    if(!(flag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE))) {
+    if(!(flag(FLAG_PICKED_BALL_ONE) || flag(FLAG_PICKED_BALL_TWO) || flag(FLAG_PICKED_BALL_THREE))) {
         
-        msgbox("Wanna see some others?", MSGBOX_YESNO)
-        
-        if(var(VAR_RESULT) == YES) {
-            if(var(VAR_NEWBIRCHLAB_SET_SELECTION) != 2) {
-                addvar(VAR_NEWBIRCHLAB_SET_SELECTION, 1)
-            }
-            else{
-                setvar(VAR_NEWBIRCHLAB_SET_SELECTION, 0)
-            }
-            msgbox("Just pick something and go.")
+        message("Wanna see some more?")
+        multichoice(25, 5, MULTI_STARTER_CHOICE, 0)
+        closemessage        
+        if (var(VAR_RESULT) == 0) {
+            call(StarterFade)
+            setvar(VAR_STARTER_REGION, 2)            
         }
-
-        else{
-            msgbox("Just pick something and go.")
+        elif (var(VAR_RESULT) == 1) {
+            call(StarterFade)
+            setvar(VAR_STARTER_REGION, 1)
         }
+        elif (var(VAR_RESULT) == 2) {
+            call(StarterFade)
+            setvar(VAR_STARTER_REGION, 0)
+        }
+        msgbox("Just pick something and go.")
     }
-
     else {
         msgbox("Have a good time then.")
     }
@@ -37,17 +37,24 @@ script NewBirchLab_EventScript_Birch {
     end
 }
 
+script StarterFade{
+    fadescreen(FADE_TO_BLACK)
+    delay(20)
+    fadescreen(FADE_FROM_BLACK)
+    return
+}
+
 script NewBirchLab_EventScript_PokeballOne{
 
     lockall
-    if(!(flag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE))) {
-        if(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 0) {
+    if(!(flag(FLAG_PICKED_BALL_ONE) || flag(FLAG_PICKED_BALL_TWO) || flag(FLAG_PICKED_BALL_THREE))) {
+        if(var(VAR_STARTER_REGION) == 0) {
             call(NewBirchLab_EventScript_Wurmple)
         }
-        elif(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 1) {
+        elif(var(VAR_STARTER_REGION) == 1) {
             call(NewBirchLab_EventScript_Spinarak)
         }
-        elif(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 2) {
+        elif(var(VAR_STARTER_REGION) == 2) {
             call(NewBirchLab_EventScript_Rattata)
         }
     }
@@ -65,14 +72,14 @@ script NewBirchLab_EventScript_PokeballOne{
 script NewBirchLab_EventScript_PokeballTwo{
 
     lockall
-    if(!(flag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE))) {
-        if(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 0) {
+    if(!(flag(FLAG_PICKED_BALL_ONE) || flag(FLAG_PICKED_BALL_TWO) || flag(FLAG_PICKED_BALL_THREE))) {
+        if(var(VAR_STARTER_REGION) == 0) {
             call(NewBirchLab_EventScript_Lotad)
         }
-        elif(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 1) {
+        elif(var(VAR_STARTER_REGION) == 1) {
             call(NewBirchLab_EventScript_Hoothoot)
         }
-        elif(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 2) {
+        elif(var(VAR_STARTER_REGION) == 2) {
             call(NewBirchLab_EventScript_Caterpie)
         }
     }
@@ -90,14 +97,14 @@ script NewBirchLab_EventScript_PokeballTwo{
 script NewBirchLab_EventScript_PokeballThree{
 
     lockall
-    if(!(flag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO) || flag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE))) {
-        if(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 0) {
+    if(!(flag(FLAG_PICKED_BALL_ONE) || flag(FLAG_PICKED_BALL_TWO) || flag(FLAG_PICKED_BALL_THREE))) {
+        if(var(VAR_STARTER_REGION) == 0) {
             call(NewBirchLab_EventScript_Seedot)
         }
-        elif(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 1) {
+        elif(var(VAR_STARTER_REGION) == 1) {
             call(NewBirchLab_EventScript_Natu)
         }
-        elif(var(VAR_NEWBIRCHLAB_SET_SELECTION) == 2) {
+        elif(var(VAR_STARTER_REGION) == 2) {
             call(NewBirchLab_EventScript_Magikarp)
         }
     }
@@ -124,7 +131,7 @@ script NewBirchLab_EventScript_Wurmple {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Wurmple!")
             removeobject(1)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE)
+            setflag(FLAG_PICKED_BALL_ONE)
             setvar(VAR_STARTER_MON, 0)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -134,7 +141,7 @@ script NewBirchLab_EventScript_Wurmple {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Wurmple!")
             removeobject(1)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE)
+            setflag(FLAG_PICKED_BALL_ONE)
             setvar(VAR_STARTER_MON, 0)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -169,7 +176,7 @@ script NewBirchLab_EventScript_Spinarak {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Spinarak!")
             removeobject(1)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE)
+            setflag(FLAG_PICKED_BALL_ONE)
             setvar(VAR_STARTER_MON, 0)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -179,7 +186,7 @@ script NewBirchLab_EventScript_Spinarak {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Spinarak!")
             removeobject(1)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE)
+            setflag(FLAG_PICKED_BALL_ONE)
             setvar(VAR_STARTER_MON, 0)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -214,7 +221,7 @@ script NewBirchLab_EventScript_Rattata {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Rattata!")
             removeobject(1)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE)
+            setflag(FLAG_PICKED_BALL_ONE)
             setvar(VAR_STARTER_MON, 0)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -224,7 +231,7 @@ script NewBirchLab_EventScript_Rattata {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Rattata!")
             removeobject(1)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_ONE)
+            setflag(FLAG_PICKED_BALL_ONE)
             setvar(VAR_STARTER_MON, 0)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -259,7 +266,7 @@ script NewBirchLab_EventScript_Lotad {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Lotad!")
             removeobject(2)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO)
+            setflag(FLAG_PICKED_BALL_TWO)
             setvar(VAR_STARTER_MON, 1)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -269,7 +276,7 @@ script NewBirchLab_EventScript_Lotad {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Lotad!")
             removeobject(2)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO)
+            setflag(FLAG_PICKED_BALL_TWO)
             setvar(VAR_STARTER_MON, 1)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -304,7 +311,7 @@ script NewBirchLab_EventScript_Hoothoot {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Hoothoot!")
             removeobject(2)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO)
+            setflag(FLAG_PICKED_BALL_TWO)
             setvar(VAR_STARTER_MON, 1)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -314,7 +321,7 @@ script NewBirchLab_EventScript_Hoothoot {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Hoothoot!")
             removeobject(2)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO)
+            setflag(FLAG_PICKED_BALL_TWO)
             setvar(VAR_STARTER_MON, 1)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -349,7 +356,7 @@ script NewBirchLab_EventScript_Caterpie {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Caterpie!")
             removeobject(2)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO)
+            setflag(FLAG_PICKED_BALL_TWO)
             setvar(VAR_STARTER_MON, 1)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -359,7 +366,7 @@ script NewBirchLab_EventScript_Caterpie {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Caterpie!")
             removeobject(2)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_TWO)
+            setflag(FLAG_PICKED_BALL_TWO)
             setvar(VAR_STARTER_MON, 1)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -394,7 +401,7 @@ script NewBirchLab_EventScript_Seedot {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Seedot!")
             removeobject(3)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE)
+            setflag(FLAG_PICKED_BALL_THREE)
             setvar(VAR_STARTER_MON, 2)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -404,7 +411,7 @@ script NewBirchLab_EventScript_Seedot {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Seedot!")
             removeobject(3)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE)
+            setflag(FLAG_PICKED_BALL_THREE)
             setvar(VAR_STARTER_MON, 2)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -439,7 +446,7 @@ script NewBirchLab_EventScript_Natu {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Natu!")
             removeobject(3)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE)
+            setflag(FLAG_PICKED_BALL_THREE)
             setvar(VAR_STARTER_MON, 2)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -449,7 +456,7 @@ script NewBirchLab_EventScript_Natu {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Natu!")
             removeobject(3)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE)
+            setflag(FLAG_PICKED_BALL_THREE)
             setvar(VAR_STARTER_MON, 2)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -484,7 +491,7 @@ script NewBirchLab_EventScript_Magikarp {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Magikarp!")
             removeobject(3)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE)
+            setflag(FLAG_PICKED_BALL_THREE)
             setvar(VAR_STARTER_MON, 2)
             call(NicknamePartyMon)
             setflag(FLAG_SYS_POKEMON_GET)
@@ -494,7 +501,7 @@ script NewBirchLab_EventScript_Magikarp {
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Received Magikarp!")
             removeobject(3)
-            setflag(FLAG_NEWBIRCHLAB_PICKED_BALL_THREE)
+            setflag(FLAG_PICKED_BALL_THREE)
             setvar(VAR_STARTER_MON, 2)
             call(NicknameBoxMon)
             setflag(FLAG_SYS_POKEMON_GET)

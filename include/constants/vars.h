@@ -265,7 +265,7 @@
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
 
 // Custom Vars
-#define VAR_NEWBIRCHLAB_SET_SELECTION                        0x40F7 // Used for starter set switching
+#define VAR_STARTER_REGION                           0x40F7 // Used for starter set switching
 #define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
 #define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
