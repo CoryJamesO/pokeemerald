@@ -4420,6 +4420,76 @@
       "secondary_tileset": "gTileset_Lab",
       "border_filepath": "data/layouts/NewBirchLab/border.bin",
       "blockdata_filepath": "data/layouts/NewBirchLab/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_CELL",
+      "name": "IronTheatreCell_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreCell/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreCell/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_CORRIDOR1",
+      "name": "IronTheatreCorridor1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreCorridor1/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreCorridor1/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_CORRIDOR2",
+      "name": "IronTheatreCorridor2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreCorridor2/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreCorridor2/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_MAIN_ENTRANCE",
+      "name": "IronTheatreMainEntrance_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreMainEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreMainEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_OUTSIDE",
+      "name": "IronTheatreOutside_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreOutside/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreOutside/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_DOCK",
+      "name": "IronTheatreDock_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreDock/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreDock/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRON_THEATRE_MAIN_ENTRY",
+      "name": "IronTheatreMainEntry_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/IronTheatreMainEntry/border.bin",
+      "blockdata_filepath": "data/layouts/IronTheatreMainEntry/map.bin"
     }
   ]
 }

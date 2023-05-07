@@ -1057,3 +1057,27 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/NewBirchLab/scripts.inc"
+
+	.include "data/maps/IronTheatreCell/scripts.inc"
+
+	.include "data/maps/IronTheatreCorridor1/scripts.inc"
+
+	.include "data/maps/IronTheatreCorridor2/scripts.inc"
+
+	.include "data/maps/IronTheatreMainEntrance/scripts.inc"
+
+	.include "data/maps/IronTheatreOutside/scripts.inc"
+
+	.include "data/maps/IronTheatreDock/scripts.inc"
+
+	.include "data/maps/IronTheatreCell/scripts.inc"
+
+	.include "data/maps/IronTheatreCorridor1/scripts.inc"
+
+	.include "data/maps/IronTheatreCorridor2/scripts.inc"
+
+	.include "data/maps/IronTheatreMainEntry/scripts.inc"
+
+	.include "data/maps/IronTheatreOutside/scripts.inc"
+
+	.include "data/maps/IronTheatreDock/scripts.inc"

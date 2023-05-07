@@ -592,6 +592,14 @@
 // gMapGroup_IndoorRoute124
 #define MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE (0 | (33 << 8))
 
-#define MAP_GROUPS_COUNT 34
+// gMapGroup_IronTheatre
+#define MAP_IRON_THEATRE_CELL       (0 | (34 << 8))
+#define MAP_IRON_THEATRE_CORRIDOR1  (1 | (34 << 8))
+#define MAP_IRON_THEATRE_CORRIDOR2  (2 | (34 << 8))
+#define MAP_IRON_THEATRE_MAIN_ENTRY (3 | (34 << 8))
+#define MAP_IRON_THEATRE_OUTSIDE    (4 | (34 << 8))
+#define MAP_IRON_THEATRE_DOCK       (5 | (34 << 8))
+
+#define MAP_GROUPS_COUNT 35
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

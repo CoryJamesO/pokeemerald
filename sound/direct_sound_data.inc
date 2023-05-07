@@ -2173,3 +2173,24 @@ DirectSoundWaveData_sd90_classical_whistle::
 	.align 2
 DirectSoundWaveData_sd90_enhanced_delay_shaku::
 	.incbin "sound/direct_sound_samples/sd90_enhanced_delay_shaku.bin"
+
+	.align 2
+DirectSoundWaveData_viola::
+	.incbin "sound/direct_sound_samples/Viola_test.bin"
+
+		.align 2
+DirectSoundWaveData_violin::
+	.incbin "sound/direct_sound_samples/Violin_test.bin"
+
+		.align 2
+DirectSoundWaveData_clarinet::
+	.incbin "sound/direct_sound_samples/Clarinet_test.bin"
+
+		.align 2
+DirectSoundWaveData_cello::
+	.incbin "sound/direct_sound_samples/Cello_test.bin"
+
+		.align 2
+DirectSoundWaveData_bassoon::
+	.incbin "sound/direct_sound_samples/Bassoon_test.bin"
+	
